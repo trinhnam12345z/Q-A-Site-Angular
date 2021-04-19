@@ -1,0 +1,24 @@
+<div style="padding: 10px 100px;">
+    <mat-card *ngIf="question">
+        <mat-card-header>
+            <mat-card-title><a style="text-decoration:none;color:#000000;"> {{question.title}}</a></mat-card-title>
+            <mat-card-subtitle>
+                {{question.postTime}}
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <p>
+                {{question.content}}
+                {{question.questionID}}
+            </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-flat-button color="primary">
+                Answer
+                <mat-icon>drive_file_rename_outline</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

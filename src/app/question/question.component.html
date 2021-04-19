@@ -27,7 +27,7 @@
     <div style="padding: 10px 100px;" *ngFor="let question of questionDisplay">
         <mat-card>
             <mat-card-header>
-                <mat-card-title>{{question.title}}</mat-card-title>
+                <mat-card-title><a style="text-decoration:none;color:#000000;" routerLink="/question/{{question.questionID}}">{{question.title}}</a></mat-card-title>
                 <mat-card-subtitle>
                     {{question.postTime}}
                 </mat-card-subtitle>
@@ -41,7 +41,7 @@
             </mat-card-content>
     
             <mat-card-actions>
-                <button mat-flat-button color="primary">
+                <button mat-flat-button color="primary"  routerLink="/question/{{question.questionID}}">
                     Answer
                     <mat-icon >drive_file_rename_outline</mat-icon>
                 </button>

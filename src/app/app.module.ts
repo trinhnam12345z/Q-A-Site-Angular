@@ -9,12 +9,14 @@ import { QuestionComponent } from './question/question.component'
 import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { FormsModule } from '@angular/forms';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
     CreateQuestionComponent,
+    QuestionDetailComponent,
   ],
   imports: [
     BrowserModule,

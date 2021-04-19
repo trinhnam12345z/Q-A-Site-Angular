@@ -21,6 +21,10 @@ export class QaService {
     return this.http.get<any>(this.questionsUrl)
   }
 
+  getQuestion(id: string): Observable<any> {
+    return this.http.get<any>(`${this.questionsUrl}/${id}`)
+  }
+
   createQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionsUrl, question, this.httpOptions)
   }
