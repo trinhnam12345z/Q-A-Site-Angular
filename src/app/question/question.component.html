@@ -1,20 +1,51 @@
-<div style="padding: 10px 100px;" *ngFor="let question of questions">
-    <mat-card >
+<div style="padding: 10px 100px;">
+    <mat-card>
         <mat-card-header>
-            <mat-card-title>{{question.title}}</mat-card-title>
-            <mat-card-subtitle>
-                {{question.postTime}}
-            </mat-card-subtitle>
+            <mat-card-title>Ask a question and start a new topic!</mat-card-title>
+            <mat-card-subtitle>The youths with similar talents will answer your query.</mat-card-subtitle>
         </mat-card-header>
-
-        <mat-card-content>
-            <p>
-                {{question.content}}
-            </p>
-        </mat-card-content>
-
         <mat-card-actions>
-            <button mat-flat-button color="primary">Answer</button>
+            <button mat-flat-button color="accent" (click)="openDialogCreate()">
+                Create Question
+                <mat-icon >drive_file_rename_outline</mat-icon>
+            </button>
         </mat-card-actions>
-    </mat-card> 
+    </mat-card>
+</div>
+
+<div>
+    <div style="padding: 10px 100px;">
+        <mat-paginator  [length]="questions?.length" 
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="[5, 10, 20, 30]"
+                        showFirstLastButtons="true"
+                        (page)="getQuestionData($event)"
+                        >
+        </mat-paginator>
+    </div>
+    
+    <div style="padding: 10px 100px;" *ngFor="let question of questionDisplay">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{question.title}}</mat-card-title>
+                <mat-card-subtitle>
+                    {{question.postTime}}
+                </mat-card-subtitle>
+            </mat-card-header>
+    
+            <mat-card-content>
+                <p>
+                    {{question.content}}
+                    {{question.questionID}}
+                </p>
+            </mat-card-content>
+    
+            <mat-card-actions>
+                <button mat-flat-button color="primary">
+                    Answer
+                    <mat-icon >drive_file_rename_outline</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>

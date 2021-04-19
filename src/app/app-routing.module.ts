@@ -4,7 +4,7 @@ import { QuestionComponent } from './question/question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/question', pathMatch: 'full' },
-  {path:'question', component :QuestionComponent}
+  { path:'question', component :QuestionComponent}
 ];
 
 @NgModule({

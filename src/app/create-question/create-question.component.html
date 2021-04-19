@@ -1,0 +1,18 @@
+<div style="margin-bottom: 20px;">
+    <mat-form-field style="width: 600px;" hintLabel="Max 150 characters" appearance="outline">
+        <mat-label>Question title </mat-label>
+        <input style="height: 30px;" matInput #input maxlength="150" [(ngModel)]="question.title">
+        <mat-hint align="end">{{input.value?.length || 0}}/150</mat-hint>
+    </mat-form-field>
+</div>
+<div style="margin-bottom: 20px;">
+    <mat-form-field style="width: 600px;" hintLabel="Max 300 characters" appearance="outline">
+        <mat-label>Question content </mat-label>
+        <textarea style="height: 50px;" matInput #inputs maxlength="300" [(ngModel)]="question.content"></textarea>
+        <mat-hint align="end">{{inputs.value?.length || 0}}/300</mat-hint>
+    </mat-form-field>
+</div>
+<div>
+    <button (click)="CreateQuestion()" mat-button color="primary" >Create</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
