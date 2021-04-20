@@ -10,14 +10,17 @@ import { Question } from '../question/question';
 export class CreateQuestionComponent implements OnInit {
 
   constructor(
-    private qaService: QaService,) { }
-  question: Question = {} as Question;
-  ngOnInit(): void {
-  }
+    private qaService: QaService,
+  ) {}
+
+    question: Question = {} as Question;
+    
+    ngOnInit(): void {
+
+    }
 
   CreateQuestion() {
     console.log(this.question);
-    
     this.qaService.createQuestion(this.question).subscribe(res=>{ if(res) alert("Created successfully")});
   }
 

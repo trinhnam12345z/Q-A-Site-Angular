@@ -32,7 +32,7 @@ export class QuestionComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateQuestionComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.qaService.getQuestions().subscribe((questions: any[]) => {
-        this.questions = questions;
+        this.questions = questions; // Reload question
         this.questionDisplay = questions.slice(this.pageIndex * this.pageSize, this.pageSize)
       });
     });
@@ -50,7 +50,6 @@ export class QuestionComponent implements OnInit {
       console.log(this.pageSize);
       console.log(this.pageIndex * this.pageSize);
       console.log((this.pageIndex + 1) * this.pageSize);*/
-
     this.questionDisplay = this.questions.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize)
   }
 }

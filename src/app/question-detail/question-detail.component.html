@@ -13,12 +13,45 @@
                 {{question.questionID}}
             </p>
         </mat-card-content>
-
-        <mat-card-actions>
-            <button mat-flat-button color="primary">
+        <div style="margin-bottom: 20px;">
+            <mat-form-field style="width: 100%;" hintLabel="Max 500 characters" appearance="outline">
+                <mat-label>Answer </mat-label>
+                <textarea style="height: 30px;" matInput #input maxlength="500" [(ngModel)]="answer.content"></textarea>
+                <mat-hint align="end">{{input.value?.length || 0}}/500</mat-hint>
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="CreateAnswer()">
                 Answer
                 <mat-icon>drive_file_rename_outline</mat-icon>
             </button>
-        </mat-card-actions>
+        </div>
     </mat-card>
 </div>
+
+<div style="padding: 10px 100px;" *ngFor="let answer of answers">
+    <mat-card>
+        <mat-card-content>
+            <p *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID">
+                {{answer.content}}
+            </p>
+            <p *ngIf="editAnswer && editAnswer.answerID === answer.answerID">
+                <mat-form-field style="width: 100%;" hintLabel="Max 500 characters" appearance="outline">
+                    <mat-label>Answer </mat-label>
+                    <textarea style="height: 30px;" matInput #input maxlength="500" [(ngModel)]="editAnswer.content"></textarea>
+                    <mat-hint align="end">{{input.value?.length || 0}}/500</mat-hint>
+                </mat-form-field>
+            </p>
+        </mat-card-content>
+        <mat-card-subtitle>
+            {{answer.postTime}}
+        </mat-card-subtitle>
+        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
+        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="warn" (click)="DeleteAnswer(answer)">Delete</button>
+        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
+        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
+
+    </mat-card>
+</div>
+
+<!-- <div style="padding: 10px 100px;" *ngFor="let answer of answers">
+    
+</div> -->
