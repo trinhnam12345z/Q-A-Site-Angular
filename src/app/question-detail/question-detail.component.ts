@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { QaService } from '../qa.service';
 import { Answer } from './answer';
@@ -18,28 +19,32 @@ export class QuestionDetailComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  ngOnInit(): void {
-    this.getQuestion();
+  answerDisplay: any[] = [];
+  pageIndex: number = 0;
+  pageSize: number = 5;
 
+  ngOnInit(): void {
+    this.getQuestionDetail();
   }
 
-  getQuestion(): void {
+  getQuestionDetail(): void {
     const id: string = this.route.snapshot.paramMap.get('id') || "";
     this.answer.question = +id; // Add questionID
-    this.qaService.getQuestion(id)
-      .subscribe(question => {
+    this.qaService.getQuestionDetail(id)
+      .subscribe((question:any) => {
         this.question = question;
         // console.log(this.question);
         this.answers = question.answers.sort(function (a:any, b:any) {
           return b.answerID - a.answerID;
         });
-        ;
+        this.answerDisplay = question.answers.slice(this.pageIndex * this.pageSize, this.pageSize);
       });
   }
 
   CreateAnswer() {
     console.log(this.answer);
     this.qaService.createAnswer(this.answer).subscribe(res => {
+      this.getQuestionDetail();
       if (res) {
         console.log(res); 
         this.answers.unshift(res); // Add answer
@@ -52,6 +57,7 @@ export class QuestionDetailComponent implements OnInit {
   DeleteAnswer(answer: Answer) {
     this.qaService.deleteAnswer(answer.answerID).subscribe(res=>{
       this.answers = this.answers.filter(a => a.answerID !== answer.answerID);
+      this.answerDisplay = this.answers.slice(this.pageIndex * this.pageSize, this.pageSize);
     })
   }
 
@@ -68,10 +74,27 @@ export class QuestionDetailComponent implements OnInit {
       for (let i = 0; i < this.answers.length; i++) {
         const a = this.answers[i];
         if (a.answerID === this.editAnswer.answerID) {
-          this.answers[i] = this.editAnswer;
+          this.answers[i] = res;
+          this.answerDisplay = this.answers.slice(this.pageIndex * this.pageSize, this.pageSize);
         }
       } this.editAnswer = undefined;
     })
   }
 
+
+
+  /**
+   * List question theo pageSize
+   * @param event 
+   */
+  getAnswersData(event: PageEvent) {
+    console.log(event);
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+      console.log(this.pageIndex);
+      console.log(this.pageSize);
+      console.log(this.pageIndex * this.pageSize);
+      console.log((this.pageIndex + 1) * this.pageSize);
+    this.answerDisplay = this.answers.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize)
+  }
 }

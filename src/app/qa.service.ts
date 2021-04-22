@@ -23,7 +23,7 @@ export class QaService {
     return this.http.get<any>(this.questionsUrl)
   }
 
-  getQuestion(id: string): Observable<any> {
+  getQuestionDetail(id: string): Observable<any> {
     return this.http.get<any>(`${this.questionsUrl}/${id}`)
   }
 

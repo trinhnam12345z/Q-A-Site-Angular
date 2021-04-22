@@ -26,8 +26,16 @@
         </div>
     </mat-card>
 </div>
-
-<div style="padding: 10px 100px;" *ngFor="let answer of answers">
+<div style="padding: 10px 100px;">
+    <mat-paginator  [length]="answers?.length" 
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="[5, 10, 20, 30]"
+                    showFirstLastButtons="true"
+                    (page)="getAnswersData($event)"
+                    >
+    </mat-paginator>
+</div>
+<div style="padding: 10px 100px;" *ngFor="let answer of answerDisplay">
     <mat-card>
         <mat-card-content>
             <p *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID">
@@ -45,9 +53,14 @@
             {{answer.postTime}}
         </mat-card-subtitle>
         <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
-        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="warn" (click)="DeleteAnswer(answer)">Delete</button>
+        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="DeleteAnswer(answer)">Delete</button>
+            <button mat-menu-item>Cancel</button>
+        </mat-menu>
         <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
         <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
+        
 
     </mat-card>
 </div>
