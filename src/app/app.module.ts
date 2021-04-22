@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { FormsModule } from '@angular/forms';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
     QuestionComponent,
     CreateQuestionComponent,
     QuestionDetailComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

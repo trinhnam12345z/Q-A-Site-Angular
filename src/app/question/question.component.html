@@ -1,4 +1,10 @@
 <div style="padding: 10px 100px;">
+    <mat-form-field style="width: 100%;" appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput>
+    </mat-form-field>
+</div>
+<div style="padding: 10px 100px;">
     <mat-card>
         <mat-card-header>
             <mat-card-title>Ask a question and start a new topic!</mat-card-title>
@@ -7,7 +13,7 @@
         <mat-card-actions>
             <button mat-flat-button color="accent" (click)="openDialogCreate()">
                 Create Question
-                <mat-icon >drive_file_rename_outline</mat-icon>
+                <mat-icon>drive_file_rename_outline</mat-icon>
             </button>
         </mat-card-actions>
     </mat-card>
@@ -15,35 +21,32 @@
 
 <div>
     <div style="padding: 10px 100px;">
-        <mat-paginator  [length]="questions?.length" 
-                        [pageSize]="pageSize"
-                        [pageSizeOptions]="[5, 10, 20, 30]"
-                        showFirstLastButtons="true"
-                        (page)="getQuestionData($event)"
-                        >
+        <mat-paginator [length]="questions?.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 30]"
+            showFirstLastButtons="true" (page)="getQuestionData($event)">
         </mat-paginator>
     </div>
-    
+
     <div style="padding: 10px 100px;" *ngFor="let question of questionDisplay">
         <mat-card>
             <mat-card-header>
-                <mat-card-title><a style="text-decoration:none;color:#000000;" routerLink="/question/{{question.questionID}}">{{question.title}}</a></mat-card-title>
+                <mat-card-title><a style="text-decoration:none;color:#000000;"
+                        routerLink="/question/{{question.questionID}}">{{question.title}}</a></mat-card-title>
                 <mat-card-subtitle>
                     {{question.postTime}}
                 </mat-card-subtitle>
             </mat-card-header>
-    
+
             <mat-card-content>
                 <p>
                     {{question.content}}
                     {{question.questionID}}
                 </p>
             </mat-card-content>
-    
+
             <mat-card-actions>
-                <button mat-flat-button color="primary"  routerLink="/question/{{question.questionID}}">
+                <button mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
                     Answer
-                    <mat-icon >drive_file_rename_outline</mat-icon>
+                    <mat-icon>drive_file_rename_outline</mat-icon>
                 </button>
             </mat-card-actions>
         </mat-card>
