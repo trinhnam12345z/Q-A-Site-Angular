@@ -39,14 +39,13 @@
             <mat-card-content>
                 <p>
                     {{question.content}}
-                    {{question.questionID}}
                 </p>
             </mat-card-content>
 
             <mat-card-actions>
-                <button matBadge="15" matBadgeColor="warn" mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
+                <button [matBadge]="question.answers.length" matBadgeColor="warn" mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
                     Answer
-                    <mat-icon>drive_file_rename_outline</mat-icon>
+                    <mat-icon>arrow_forward</mat-icon>
                 </button>
             </mat-card-actions>
         </mat-card>
