@@ -34,10 +34,10 @@ export class QuestionDetailComponent implements OnInit {
       .subscribe((question:any) => {
         this.question = question;
         // console.log(this.question);
-        this.answers = question.answers.sort(function (a:any, b:any) {
+        this.answers = question.answers?.sort(function (a:any, b:any) {
           return b.answerID - a.answerID;
-        });
-        this.answerDisplay = question.answers.slice(this.pageIndex * this.pageSize, this.pageSize);
+        })||[];
+        this.answerDisplay = question.answers?.slice(this.pageIndex * this.pageSize, this.pageSize) || [];
       });
   }
 
