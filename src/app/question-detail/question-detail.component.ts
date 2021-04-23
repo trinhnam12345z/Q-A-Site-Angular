@@ -37,6 +37,7 @@ export class QuestionDetailComponent implements OnInit {
         this.answers = question.answers?.sort(function (a:any, b:any) {
           return b.answerID - a.answerID;
         })||[];
+        console.log(this.answers);
         this.answerDisplay = question.answers?.slice(this.pageIndex * this.pageSize, this.pageSize) || [];
       });
   }

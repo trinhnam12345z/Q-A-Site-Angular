@@ -1,7 +1,7 @@
 <div style="padding: 10px 100px;">
     <mat-form-field style="width: 100%;" appearance="fill">
-        <mat-label>Input</mat-label>
-        <input matInput type="text" name="search" [(ngModel)]="searchText" autocomplete="off">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" name="search" [(ngModel)]="searchText" autocomplete="off" (input)="search($event)">
     </mat-form-field>
 </div>
 <div style="padding: 10px 100px;">
@@ -21,12 +21,12 @@
 
 <div>
     <div style="padding: 10px 100px;">
-        <mat-paginator [length]="questions?.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 30]"
-            showFirstLastButtons="true" (page)="getQuestionData($event)">
+        <mat-paginator [length]="filterQuestions?.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 30]"
+            showFirstLastButtons="true" (page)="pageChange($event)">
         </mat-paginator>
     </div>
 
-    <div style="padding: 10px 100px;" *ngFor="let question of questionDisplay | filter: searchText" >
+    <div style="padding: 10px 100px;" *ngFor="let question of questionDisplay">
         <mat-card>
             <mat-card-header>
                 <mat-card-title><a style="text-decoration:none;color:#000000;"
@@ -44,7 +44,7 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
+                <button matBadge="15" matBadgeColor="warn" mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
                     Answer
                     <mat-icon>drive_file_rename_outline</mat-icon>
                 </button>
