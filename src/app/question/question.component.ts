@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { CreateQuestionComponent } from '../create-question/create-question.component';
+import { FilterPipe } from '../filter.pipe';
 import { QaService } from '../qa.service';
 
 @Component({
@@ -14,8 +15,9 @@ export class QuestionComponent implements OnInit {
   constructor(
     private qaService: QaService,
     public dialog: MatDialog,
-  ) { }
+  ) {}
 
+  searchText: any;
   questions: any[] = [];
   questionDisplay: any[] = [];
   pageIndex: number = 0;
