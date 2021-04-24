@@ -11,7 +11,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private qaService: QaService,
-  ) { }
+  ) {}
 
   confirmPassword: string = "";
 

@@ -18,12 +18,16 @@ export class QaService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+
+  }
   //Question
   getQuestions(): Observable<any> {
-    return this.http.get<any>(this.questionsUrl)
+    const headers = { user_id: JSON.parse(localStorage.getItem("user") || "{}").id.toString() };
+    return this.http.get<any>(this.questionsUrl, { headers })
   }
 
   getQuestionDetail(id: string): Observable<any> {
@@ -31,11 +35,13 @@ export class QaService {
   }
 
   createQuestion(question: Question): Observable<Question> {
-    return this.http.post<Question>(this.questionsUrl, question, this.httpOptions)
+    const headers = { user_id: JSON.parse(localStorage.getItem("user") || "{}").id.toString() };
+    return this.http.post<Question>(this.questionsUrl, question, { headers })
   }
   //Answer
   createAnswer(answer: Answer): Observable<Answer> {
-    return this.http.post<Answer>(this.answerUrl, answer, this.httpOptions)
+    const headers = { user_id: JSON.parse(localStorage.getItem("user") || "{}").id.toString() };
+    return this.http.post<Answer>(this.answerUrl, answer, { headers })
   }
 
   deleteAnswer(id: number): Observable<Answer> {
@@ -53,6 +59,7 @@ export class QaService {
   }
 
   signInUser(user: User): Observable<User> {
+    this.httpOptions.headers.append("user", localStorage.getItem("user") || "");
     return this.http.post<User>(this.signInUrl, user, this.httpOptions)
   }
 }

@@ -1,1 +1,11 @@
+<mat-toolbar>
+    <span>{{user.fullName}}</span>
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button (click)="signOut()" mat-menu-item>Sign Out</button>
+    </mat-menu>
+</mat-toolbar>
 <router-outlet></router-outlet>
