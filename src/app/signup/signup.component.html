@@ -2,33 +2,34 @@
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 250 characters" appearance="outline">
             <mat-label>Full Name</mat-label>
-            <input type="email" style="height: 15px;" matInput #input maxlength="250">
+            <input type="email" style="height: 15px;" matInput #input maxlength="250" [(ngModel)]="user.fullName">
             <mat-hint align="end">{{input.value?.length || 0}}/250</mat-hint>
         </mat-form-field>
     </div>
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 50 characters" appearance="outline">
             <mat-label>Email</mat-label>
-            <input type="email" style="height: 15px;" matInput #input maxlength="50">
+            <input type="email" style="height: 15px;" matInput #input maxlength="50" [(ngModel)]="user.email">
             <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
         </mat-form-field>
     </div>
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 250 characters" appearance="outline">
             <mat-label>Password</mat-label>
-            <input type="password" style="height: 15px;" matInput #inputs maxlength="250">
+            <input type="password" style="height: 15px;" matInput #inputs maxlength="250" [(ngModel)]="user.password">
             <mat-hint align="end">{{inputs.value?.length || 0}}/250</mat-hint>
         </mat-form-field>
     </div>
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 250 characters" appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input type="password" style="height: 15px;" matInput #inputs maxlength="250">
+            <input type="password" style="height: 15px;" matInput #inputs maxlength="250" [(ngModel)]="confirmPassword">
             <mat-hint align="end">{{inputs.value?.length || 0}}/250</mat-hint>
         </mat-form-field>
     </div>
     <div>
-        <button style="margin-right: 20px;display: block; margin-left: auto; margin-right: auto; width: 40%;" mat-raised-button color="primary">Sign Up</button>
+        <button style="margin-right: 20px;display: block; margin-left: auto; margin-right: auto; width: 40%;" mat-raised-button color="primary" 
+        (click)="SignUpUser()">Sign Up</button>
     </div>
     <div>
         <p style="margin: 10px; text-align: center;">It a member ? <a style="text-decoration:none;" routerLink="/signin" >Signin now !</a></p>
