@@ -10,7 +10,8 @@ import { Question } from './question/question';
 export class QaService {
 
   private questionsUrl = 'http://localhost:3000/questions';  // URL to web api
-  private answerUrl = 'http://localhost:3000/answers'
+  private answerUrl = 'http://localhost:3000/answers';
+  private userUrl = 'http://localhost:3000/users';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
