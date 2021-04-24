@@ -2,19 +2,19 @@
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 50 characters" appearance="outline">
             <mat-label>Email</mat-label>
-            <input type="email" style="height: 15px;" matInput #input maxlength="150">
+            <input type="email" style="height: 15px;" matInput #input maxlength="150" [(ngModel)]="user.email">
             <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
         </mat-form-field>
     </div>
     <div style="margin-bottom: 20px;">
-        <mat-form-field style="width: 100%;" hintLabel="Max 30 characters" appearance="outline">
+        <mat-form-field style="width: 100%;" hintLabel="Max 30 characters" appearance="outline" >
             <mat-label>Password</mat-label>
-            <input type="password" style="height: 15px;" matInput #inputs maxlength="300">
+            <input type="password" style="height: 15px;" matInput #inputs maxlength="300" [(ngModel)]="user.password">
             <mat-hint align="end">{{inputs.value?.length || 0}}/30</mat-hint>
         </mat-form-field>
     </div>
     <div>
-        <button style="margin-right: 20px;display: block; margin-left: auto; margin-right: auto; width: 40%;" mat-raised-button color="primary">Sign In</button>
+        <button style="margin-right: 20px;display: block; margin-left: auto; margin-right: auto; width: 40%;" mat-raised-button color="primary" (click)="SignInUser()">Sign In</button>
     </div>
     <div>
         <p style="margin: 10px; text-align: center;">Not a member ? <a style="text-decoration:none;" routerLink="/signup" >Signup now !</a></p>

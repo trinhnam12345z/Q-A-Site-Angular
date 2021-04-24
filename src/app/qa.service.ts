@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Answer } from './question-detail/answer';
 import { Question } from './question/question';
-import { User } from './User';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class QaService {
 
   private questionsUrl = 'http://localhost:3000/questions';  // URL to web api
   private answerUrl = 'http://localhost:3000/answers';
-  private userUrl = 'http://localhost:3000/users';
+  private signUpUrl = 'http://localhost:3000/users/sign-up';
+  private signInUrl = 'http://localhost:3000/users/sign-in';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -47,7 +48,11 @@ export class QaService {
     return this.http.put<Answer>(url, answer, this.httpOptions)
   }
   //User
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userUrl, user, this.httpOptions)
+  signUpUser(user: User): Observable<User> {
+    return this.http.post<User>(this.signUpUrl, user, this.httpOptions)
+  }
+
+  signInUser(user: User): Observable<User> {
+    return this.http.post<User>(this.signInUrl, user, this.httpOptions)
   }
 }

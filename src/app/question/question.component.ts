@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { CreateQuestionComponent } from '../create-question/create-question.component';
 import { FilterPipe } from '../filter.pipe';
 import { QaService } from '../qa.service';
@@ -16,6 +17,7 @@ export class QuestionComponent implements OnInit {
   constructor(
     private qaService: QaService,
     public dialog: MatDialog,
+    private router: Router,
   ) { }
 
   searchText: any;
@@ -79,5 +81,10 @@ export class QuestionComponent implements OnInit {
     return items.filter(it => {
       return it.content.toLowerCase().includes(searchText) || it.title.toLowerCase().includes(searchText); // ? toLowerCase()
     });
+  }
+
+  signOut(){
+    localStorage.removeItem('user');
+    this.router.navigate(['/signin']);
   }
 }

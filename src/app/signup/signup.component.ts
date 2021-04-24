@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QaService } from '../qa.service';
-import { User } from '../User';
+import { User } from '../user';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
   SignUpUser() {
     console.log(this.user);
     if (this.user.password === this.confirmPassword) {
-      this.qaService.createUser(this.user).subscribe(res => { if (res) alert("Created successfully") });
+      this.qaService.signUpUser(this.user).subscribe(res => { if (res) alert("Sign Up successfully") });
     } else {
       alert("Sai Confirm Password !")
     }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { QaService } from '../qa.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private qaService: QaService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("user")) {
+      this.router.navigate(['/question']);
+    }
   }
 
+  user: User = {} as User;
+
+  SignInUser() {
+    this.qaService.signInUser(this.user).subscribe(res => {
+      // debugger
+      if (res) {
+        localStorage.setItem("user", JSON.stringify(res));
+        alert("Sign In successfully");
+        // redirect to url
+        this.router.navigate(['/question']);
+      }
+    });
+
+  }
 }

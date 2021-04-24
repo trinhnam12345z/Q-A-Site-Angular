@@ -1,3 +1,13 @@
+<mat-toolbar>
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button (click)="signOut()" mat-menu-item>Sign Out</button>
+    </mat-menu>
+</mat-toolbar>
+
 <div style="padding: 10px 100px;">
     <mat-form-field style="width: 100%;" appearance="fill">
         <mat-label>Search</mat-label>
@@ -43,7 +53,8 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button [matBadge]="question.answers.length" matBadgeColor="warn" mat-flat-button color="primary" routerLink="/question/{{question.questionID}}">
+                <button [matBadge]="question.answers.length" matBadgeColor="warn" mat-flat-button color="primary"
+                    routerLink="/question/{{question.questionID}}">
                     Answer
                     <mat-icon>arrow_forward</mat-icon>
                 </button>
