@@ -50,7 +50,7 @@
             </p>
         </mat-card-content>
         <mat-card-subtitle>
-            {{answer.postTime}}
+            {{answer.user?.fullName}}---{{answer.postTime}}
         </mat-card-subtitle>
         <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
         <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>

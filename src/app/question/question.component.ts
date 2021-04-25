@@ -74,7 +74,6 @@ export class QuestionComponent implements OnInit {
       return items;
     }
     searchText = searchText.toLowerCase(); // ? toLowerCase()
-
     return items.filter(it => {
       return it.content.toLowerCase().includes(searchText) || it.title.toLowerCase().includes(searchText); // ? toLowerCase()
     });

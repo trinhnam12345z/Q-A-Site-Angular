@@ -2,14 +2,14 @@
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 50 characters" appearance="outline">
             <mat-label>Email</mat-label>
-            <input type="email" style="height: 15px;" matInput #input maxlength="150" [(ngModel)]="user.email">
+            <input type="email" style="height: 15px;" matInput #input maxlength="150" [(ngModel)]="user.email" autocomplete="on">
             <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
         </mat-form-field>
     </div>
     <div style="margin-bottom: 20px;">
         <mat-form-field style="width: 100%;" hintLabel="Max 30 characters" appearance="outline" >
             <mat-label>Password</mat-label>
-            <input type="password" style="height: 15px;" matInput #inputs maxlength="300" [(ngModel)]="user.password">
+            <input type="password" style="height: 15px;" matInput #inputs maxlength="300" [(ngModel)]="user.password"  autocomplete="on">
             <mat-hint align="end">{{inputs.value?.length || 0}}/30</mat-hint>
         </mat-form-field>
     </div>

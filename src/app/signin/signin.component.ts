@@ -30,9 +30,9 @@ export class SigninComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(res));
         alert("Sign In successfully");
         // redirect to url
-        this.router.navigate(['/question']);
+        // this.router.navigate(['/question']);
+        location.href="/question";
       }
     });
-
   }
 }
