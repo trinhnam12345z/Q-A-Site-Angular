@@ -21,6 +21,16 @@
 
 <div>
     <div style="padding: 10px 100px;">
+
+        <!-- <div>
+            <mat-form-field appearance="fill" mat-raised-button matBadge="7" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">
+                <mat-label>Category</mat-label>
+                    <mat-select>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let category of category" value='category.id'>{{category.name}}</mat-option>
+                    </mat-select>
+            </mat-form-field>
+        </div> -->
         <mat-paginator [length]="questions?.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 30]"
             showFirstLastButtons="true" (page)="getQuestionData($event)">
         </mat-paginator>

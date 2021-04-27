@@ -1,1 +1,26 @@
-<p>category works!</p>
+<div style="padding: 10px 100px; margin-top: 50px;">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Category</mat-card-title>
+            <mat-card-subtitle>Please select a category.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle  *ngFor="let category of categories" value='category.id'>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{category.name}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let item of category.subcategory" value='item.id'>{{item.name}}</mat-list-item>
+                      </mat-list>
+                    <button mat-raised-button color="accent" style ="margin-top: 5px;">New</button>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-card-actions style="margin-left: 30px; margin-top: 20px;"> 
+                <button mat-raised-button color="accent" (click)="openDialogCreate()">Create new Category</button>
+            </mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -12,6 +12,16 @@
         <mat-hint align="end">{{inputs.value?.length || 0}}/300</mat-hint>
     </mat-form-field>
 </div>
+<div style="margin-bottom: 20px;">
+<mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let category of category" [value]="category.id">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div>
     <button (click)="CreateQuestion()" mat-button color="primary" >Create</button>
     <button mat-button mat-dialog-close>Cancel</button>

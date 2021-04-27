@@ -11,20 +11,32 @@ import { QaService } from '../qa.service';
 })
 export class QuestionComponent implements OnInit {
 
+  /** Test */
+
   constructor(
     private qaService: QaService,
     public dialog: MatDialog,
   ) { }
 
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
+
   questions: any[] = [];
   questionDisplay: any[] = [];
   pageIndex: number = 0;
   pageSize: number = 5;
+  category: any[] = [];
 
   ngOnInit(): void {
     this.qaService.getQuestions().subscribe((questions: any[]) => {
       this.questions = questions;
       this.questionDisplay = questions.slice(this.pageIndex * this.pageSize, this.pageSize)
+    });
+    this.qaService.getCategory().subscribe((category: any[]) => {
+      this.category = category;
     });
   }
 

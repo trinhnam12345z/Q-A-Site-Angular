@@ -11,6 +11,8 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
 import { FormsModule } from '@angular/forms';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { FilterPipe } from './filter.pipe';
+import { CategoryComponent } from './category/category.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { FilterPipe } from './filter.pipe';
     CreateQuestionComponent,
     QuestionDetailComponent,
     FilterPipe,
+    CategoryComponent,
+    CreateCategoryComponent,
   ],
   imports: [
     BrowserModule,
