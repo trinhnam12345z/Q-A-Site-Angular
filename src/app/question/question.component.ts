@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { CreateQuestionComponent } from '../create-question/create-question.component';
 import { QaService } from '../qa.service';
+import { Like } from '../user-like/like';
+import { UserLikeComponent } from '../user-like/user-like.component';
 import { Question } from './question';
+
 
 @Component({
   selector: 'app-question',
@@ -15,7 +18,10 @@ export class QuestionComponent implements OnInit {
   constructor(
     private qaService: QaService,
     public dialog: MatDialog,
-  ) { }
+  ) {}
+  like: Like = {} as Like;
+  likes: any[] = [];
+
 
   searchText: any;
   questions: any[] = [];
@@ -77,5 +83,18 @@ export class QuestionComponent implements OnInit {
     return items.filter(it => {
       return it.content.toLowerCase().includes(searchText) || it.title.toLowerCase().includes(searchText); // ? toLowerCase()
     });
+  }
+
+  Like(questionId: number) {
+    // console.log(this.like);
+    this.qaService.like({ questionId }).subscribe(res=>{});
+  }
+
+
+  openDialogUserLike(question : any){
+    const dialogRef = this.dialog.open(UserLikeComponent,{
+      data:{likes: question.likes as Like[]}
+    });
+    dialogRef.afterClosed()
   }
 }

@@ -13,6 +13,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import { FilterPipe } from './filter.pipe';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserLikeComponent } from './user-like/user-like.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
     FilterPipe,
     SigninComponent,
     SignupComponent,
+    UserLikeComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,9 @@ import { SignupComponent } from './signup/signup.component';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
+  entryComponents:[UserLikeComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

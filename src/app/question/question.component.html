@@ -43,6 +43,13 @@
             </mat-card-content>
 
             <mat-card-actions>
+                <mat-card-subtitle>
+                    <a (click)="openDialogUserLike(question)" style="text-decoration:none;color:#666666;"><span>{{question.likes.length}}<mat-icon style="font-size: 10px;">favorite</mat-icon></span></a>
+                </mat-card-subtitle>
+                <button (click)="Like(question.questionID)" mat-flat-button color="warn" style="margin-right: 10px;">
+                    Like
+                    <mat-icon>favorite</mat-icon>
+                </button>
                 <button [matBadge]="question.answers.length" matBadgeColor="warn" mat-flat-button color="primary"
                     routerLink="/question/{{question.questionID}}">
                     Answer

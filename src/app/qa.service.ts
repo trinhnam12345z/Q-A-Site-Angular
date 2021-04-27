@@ -14,6 +14,8 @@ export class QaService {
   private answerUrl = 'http://localhost:3000/answers';
   private signUpUrl = 'http://localhost:3000/users/sign-up';
   private signInUrl = 'http://localhost:3000/users/sign-in';
+  private likeUrl = 'http://localhost:3000/like';
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -66,5 +68,12 @@ export class QaService {
   signInUser(user: User): Observable<User> {
     this.httpOptions.headers.append("user", localStorage.getItem("user") || "");
     return this.http.post<User>(this.signInUrl, user, this.httpOptions)
+  }
+
+  //Like
+  like(like: any): Observable<any> {
+    const headers = { user_id: JSON.parse(localStorage.getItem("user") || "{}").id.toString() };
+    console.log(like);
+    return this.http.post<any>(this.likeUrl, like, { headers })
   }
 }
