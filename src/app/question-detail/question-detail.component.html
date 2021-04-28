@@ -56,14 +56,16 @@
         <mat-card-subtitle>
             {{answer.user?.fullName}}---{{answer.postTime}}
         </mat-card-subtitle>
-        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
-        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="DeleteAnswer(answer)">Delete</button>
-            <button mat-menu-item>Cancel</button>
-        </mat-menu>
-        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
-        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
+        <div *ngIf="user.id == answer.user.id">
+            <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
+            <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="DeleteAnswer(answer)">Delete</button>
+                <button mat-menu-item>Cancel</button>
+            </mat-menu>
+            <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
+            <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
+        </div>
     </mat-card>
 </div>
 

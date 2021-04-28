@@ -14,14 +14,18 @@ export class QuestionDetailComponent implements OnInit {
   answers: any[] = [];
   answer: Answer = {} as Answer;
   editAnswer: any;
+  user:any ;
   constructor(
     private qaService: QaService,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+    this.user =  JSON.parse(localStorage.getItem("user") || "{}");
+  }
 
   answerDisplay: any[] = [];
   pageIndex: number = 0;
   pageSize: number = 5;
+
 
   ngOnInit(): void {
     this.getQuestionDetail();

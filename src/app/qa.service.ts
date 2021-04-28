@@ -47,7 +47,7 @@ export class QaService {
     // const userId = user.id.toString();
     // const h = { user_id:userId };
     const headers = { user_id: JSON.parse(localStorage.getItem("user") || "{}").id.toString() };
-    console.log(headers);
+    // console.log(headers);
     return this.http.post<Answer>(this.answerUrl, answer, { headers })
   }
 

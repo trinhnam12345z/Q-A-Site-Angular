@@ -87,7 +87,7 @@ export class QuestionComponent implements OnInit {
 
   Like(questionId: number) {
     this.qaService.like({ questionId }).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       const a = this.questions.find(qs =>
         qs.questionID == questionId
       ); 
@@ -96,7 +96,7 @@ export class QuestionComponent implements OnInit {
         a.likes.push(res);
       } else {
         const x = a.likes.indexOf(res);
-        console.log(x);
+        // console.log(x);
         a.likes.splice(x,1);
       }
     });
