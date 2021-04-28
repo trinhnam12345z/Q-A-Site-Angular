@@ -3,12 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category/category.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { QuestionComponent } from './question/question.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/category', pathMatch: 'full' },
   { path:'question', component :QuestionComponent},
   { path: 'question/:id', component: QuestionDetailComponent },
   { path: 'category', component: CategoryComponent }
+  { path: '', redirectTo: '/signin', pathMatch: 'full' },
+  { path:'question', component :QuestionComponent},
+  { path: 'question/:id', component: QuestionDetailComponent },
+  { path:'signin', component :SigninComponent},
+  { path:'signup', component :SignupComponent},
+
 ];
 
 @NgModule({
