@@ -30,8 +30,10 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  openDialogCreate() {
-    const dialogRef = this.dialog.open(CreateCategoryComponent);
+  openDialogCreate(category?: any) {
+    const dialogRef = this.dialog.open(CreateCategoryComponent,
+      { data: category }
+    );
     dialogRef.afterClosed().subscribe(result => {
       this.qaService.getCategory().subscribe((categories: any[]) => {
         this.categories = categories;
