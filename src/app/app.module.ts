@@ -11,6 +11,8 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
 import { FormsModule } from '@angular/forms';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { FilterPipe } from './filter.pipe';
+import { CategoryComponent } from './category/category.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserLikeComponent } from './user-like/user-like.component';
@@ -22,6 +24,8 @@ import { UserLikeComponent } from './user-like/user-like.component';
     CreateQuestionComponent,
     QuestionDetailComponent,
     FilterPipe,
+    CategoryComponent,
+    CreateCategoryComponent,
     SigninComponent,
     SignupComponent,
     UserLikeComponent,

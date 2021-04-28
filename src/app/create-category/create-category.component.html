@@ -1,0 +1,11 @@
+<div style="margin-bottom: 20px;">
+    <mat-form-field style="width: 600px;" hintLabel="Max 150 characters" appearance="outline">
+        <mat-label>Category name</mat-label>
+        <input style="height: 30px;" matInput #input maxlength="150" [(ngModel)]="category.name">
+        <mat-hint align="end">{{input.value?.length || 0}}/150</mat-hint>
+    </mat-form-field>
+</div>
+<div>
+    <button (click)="CreateCategory()" mat-button color="primary" >Create</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../category/category';
 import { QaService } from '../qa.service';
 import { Question } from '../question/question';
 
@@ -8,6 +9,7 @@ import { Question } from '../question/question';
   styleUrls: ['./create-question.component.css']
 })
 export class CreateQuestionComponent implements OnInit {
+  
 
   constructor(
     private qaService: QaService,
@@ -16,8 +18,12 @@ export class CreateQuestionComponent implements OnInit {
     question: Question = {} as Question;
     
     ngOnInit(): void {
-
+      this.qaService.getCategory().subscribe((category: any[]) => {
+        this.category = category;
+      });
     }
+
+    category: any[] = [];
 
   CreateQuestion() {
     console.log(this.question);
