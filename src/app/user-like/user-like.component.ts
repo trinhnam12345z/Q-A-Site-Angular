@@ -12,7 +12,7 @@ export class UserLikeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UserLikeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Like[]) {}
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
   }

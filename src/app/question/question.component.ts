@@ -18,7 +18,7 @@ export class QuestionComponent implements OnInit {
   constructor(
     private qaService: QaService,
     public dialog: MatDialog,
-  ) {}
+  ) { }
   like: Like = {} as Like;
   likes: any[] = [];
 
@@ -86,14 +86,29 @@ export class QuestionComponent implements OnInit {
   }
 
   Like(questionId: number) {
-    // console.log(this.like);
-    this.qaService.like({ questionId }).subscribe(res=>{});
+    this.qaService.like({ questionId }).subscribe(res => {
+      console.log(res);
+      const a = this.questions.find(qs =>
+        qs.questionID == questionId
+      ); 
+      a.liked = !res.isDelete;
+      if (res.isDelete === false) {
+        a.likes.push(res);
+      } else {
+        const x = a.likes.indexOf(res);
+        console.log(x);
+        a.likes.splice(x,1);
+      }
+    });
   }
 
 
-  openDialogUserLike(question : any){
-    const dialogRef = this.dialog.open(UserLikeComponent,{
-      data:{likes: question.likes as Like[]}
+
+
+
+  openDialogUserLike(question: any) {
+    const dialogRef = this.dialog.open(UserLikeComponent, {
+      data: { likes: question.likes as Like[] }
     });
     dialogRef.afterClosed()
   }

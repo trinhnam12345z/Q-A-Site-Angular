@@ -32,7 +32,7 @@
                 <mat-card-title><a style="text-decoration:none;color:#000000;"
                         routerLink="/question/{{question.questionID}}">{{question.title}}</a></mat-card-title>
                 <mat-card-subtitle>
-                {{question.user?.fullName}} -- {{question.postTime}}
+                    {{question.user?.fullName}} -- {{question.postTime}}
                 </mat-card-subtitle>
             </mat-card-header>
 
@@ -44,11 +44,24 @@
 
             <mat-card-actions>
                 <mat-card-subtitle>
-                    <a (click)="openDialogUserLike(question)" style="text-decoration:none;color:#666666;"><span>{{question.likes.length}}<mat-icon style="font-size: 10px;">favorite</mat-icon></span></a>
+                    <a *ngIf="question.likes.length > 0" (click)="openDialogUserLike(question)"style="text-decoration:none;color:#666666;" >
+                        <span>
+                            {{question.likes.length}}
+                            <mat-icon style="font-size: 15px;padding-left: 2px;" color="warn">favorite</mat-icon>
+                        </span>
+                    </a>
                 </mat-card-subtitle>
-                <button (click)="Like(question.questionID)" mat-flat-button color="warn" style="margin-right: 10px;">
+                <button *ngIf="!question.liked" (click)="Like(question.questionID)" mat-stroked-button style="margin-right: 10px;">
+                    <mat-icon>
+                        favorite_border
+                    </mat-icon>
                     Like
-                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button *ngIf="question.liked" (click)="Like(question.questionID)" mat-raised-button color="warn" style="margin-right: 10px;">
+                    <mat-icon>
+                        favorite
+                    </mat-icon>
+                    Like
                 </button>
                 <button [matBadge]="question.answers.length" matBadgeColor="warn" mat-flat-button color="primary"
                     routerLink="/question/{{question.questionID}}">
