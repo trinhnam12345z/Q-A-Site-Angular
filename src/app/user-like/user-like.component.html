@@ -1,0 +1,3 @@
+<cdk-virtual-scroll-viewport itemSize="5" style="width: 400px; height: 300px;">
+    <mat-card style="width: 300px; margin: 10px;" *ngFor="let like of data.likes" >{{like.user.fullName}}</mat-card>
+</cdk-virtual-scroll-viewport>

@@ -1,12 +1,12 @@
 <div style="padding: 10px 100px;">
     <mat-card *ngIf="question">
         <mat-card-header>
-            <mat-card-title><a style="text-decoration:none;color:#000000;"> {{question.title}}</a></mat-card-title>
+            <mat-card-title><a style="text-decoration:none;color:#000000;"> {{question.title}}</a></mat-card-title> 
             <mat-card-subtitle>
+                {{question.user?.fullName}}
                 {{question.postTime}}
             </mat-card-subtitle>
         </mat-card-header>
-
         <mat-card-content>
             <p>
                 {{question.content}}
@@ -19,6 +19,10 @@
                 <textarea style="height: 30px;" matInput #input maxlength="500" [(ngModel)]="answer.content"></textarea>
                 <mat-hint align="end">{{input.value?.length || 0}}/500</mat-hint>
             </mat-form-field>
+            <button mat-flat-button color="warn" style="margin-right: 10px;">
+                Like
+                <mat-icon>favorite</mat-icon>
+            </button>
             <button mat-flat-button color="primary" (click)="CreateAnswer()">
                 Answer
                 <mat-icon>drive_file_rename_outline</mat-icon>
@@ -50,18 +54,18 @@
             </p>
         </mat-card-content>
         <mat-card-subtitle>
-            {{answer.postTime}}
+            {{answer.user?.fullName}}---{{answer.postTime}}
         </mat-card-subtitle>
-        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
-        <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="DeleteAnswer(answer)">Delete</button>
-            <button mat-menu-item>Cancel</button>
-        </mat-menu>
-        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
-        <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
-        
-
+        <div *ngIf="user.id == answer.user.id">
+            <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button color="accent" style="margin-right: 10px;" (click)="setEdit(answer)">Edit</button>
+            <button *ngIf="!editAnswer || editAnswer.answerID !== answer.answerID" mat-raised-button mat-button color="warn" [matMenuTriggerFor]="menu">Delete</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="DeleteAnswer(answer)">Delete</button>
+                <button mat-menu-item>Cancel</button>
+            </mat-menu>
+            <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateAnswer(answer)">Update</button>
+            <button *ngIf="editAnswer && editAnswer.answerID === answer.answerID" mat-raised-button color="warn" (click)="cancelEdit()">Cancel</button>
+        </div>
     </mat-card>
 </div>
 

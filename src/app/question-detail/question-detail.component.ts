@@ -14,14 +14,18 @@ export class QuestionDetailComponent implements OnInit {
   answers: any[] = [];
   answer: Answer = {} as Answer;
   editAnswer: any;
+  user:any ;
   constructor(
     private qaService: QaService,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+    this.user =  JSON.parse(localStorage.getItem("user") || "{}");
+  }
 
   answerDisplay: any[] = [];
   pageIndex: number = 0;
   pageSize: number = 5;
+
 
   ngOnInit(): void {
     this.getQuestionDetail();
@@ -34,10 +38,11 @@ export class QuestionDetailComponent implements OnInit {
       .subscribe((question:any) => {
         this.question = question;
         // console.log(this.question);
-        this.answers = question.answers.sort(function (a:any, b:any) {
+        this.answers = question.answers?.sort(function (a:any, b:any) {
           return b.answerID - a.answerID;
-        });
-        this.answerDisplay = question.answers.slice(this.pageIndex * this.pageSize, this.pageSize);
+        })||[];
+        console.log(this.answers);
+        this.answerDisplay = question.answers?.slice(this.pageIndex * this.pageSize, this.pageSize) || [];
       });
   }
 
